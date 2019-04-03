@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <ul>
+        <li><a href="#title1">標題1</a></li>
+        <li><a href="#title2">標題2</a></li>
+        <li><a href="#title3">標題3</a></li>
+        <li><a href="page.html#title3">分頁標題3</a></li>
+    </ul> 
+    <h1 id="title1">我是標題一</h1>
+    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Omnis pariatur a delectus deleniti corrupti eaque velit! Odit optio ipsum quibusdam totam nisi possimus illo nihil, minus cumque iusto eveniet ducimus nesciunt laboriosam dolore voluptate distinctio suscipit officia doloribus obcaecati impedit libero id corporis quos. Atque illo suscipit delectus voluptatibus ea? Cumque, cum! Laudantium nostrum amet quasi dolor repudiandae cumque harum! Expedita libero ad, eligendi recusandae alias nam, sequi explicabo, cumque harum consectetur mollitia sed neque tempora maiores? Et excepturi fugit expedita saepe similique! Reprehenderit, beatae. Officiis, perferendis omnis consequatur dolorum autem sunt obcaecati quisquam deserunt? Cum ratione fuga similique necessitatibus ut, sed magnam sequi voluptas id eaque minus deserunt laudantium quo obcaecati molestias voluptatum! Error, placeat odit? Ab iste sequi accusantium in repudiandae. Numquam dolore ratione nemo odio quod laboriosam architecto velit quidem magnam itaque aperiam laudantium doloremque, corporis asperiores ex impedit blanditiis odit tempora eius! Atque dicta dignissimos blanditiis!</p>
+    <h1 id="title2">我是標題二</h1>
+    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Omnis pariatur a delectus deleniti corrupti eaque velit! Odit optio ipsum quibusdam totam nisi possimus illo nihil, minus cumque iusto eveniet ducimus nesciunt laboriosam dolore voluptate distinctio suscipit officia doloribus obcaecati impedit libero id corporis quos. Atque illo suscipit delectus voluptatibus ea? Cumque, cum! Laudantium nostrum amet quasi dolor repudiandae cumque harum! Expedita libero ad, eligendi recusandae alias nam, sequi explicabo, cumque harum consectetur mollitia sed neque tempora maiores? Et excepturi fugit expedita saepe similique! Reprehenderit, beatae. Officiis, perferendis omnis consequatur dolorum autem sunt obcaecati quisquam deserunt? Cum ratione fuga similique necessitatibus ut, sed magnam sequi voluptas id eaque minus deserunt laudantium quo obcaecati molestias voluptatum! Error, placeat odit? Ab iste sequi accusantium in repudiandae. Numquam dolore ratione nemo odio quod laboriosam architecto velit quidem magnam itaque aperiam laudantium doloremque, corporis asperiores ex impedit blanditiis odit tempora eius! Atque dicta dignissimos blanditiis!</p>
+    <h1 id="title3">我是標題三</h1>
+    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Omnis pariatur a delectus deleniti corrupti eaque velit! Odit optio ipsum quibusdam totam nisi possimus illo nihil, minus cumque iusto eveniet ducimus nesciunt laboriosam dolore voluptate distinctio suscipit officia doloribus obcaecati impedit libero id corporis quos. Atque illo suscipit delectus voluptatibus ea? Cumque, cum! Laudantium nostrum amet quasi dolor repudiandae cumque harum! Expedita libero ad, eligendi recusandae alias nam, sequi explicabo, cumque harum consectetur mollitia sed neque tempora maiores? Et excepturi fugit expedita saepe similique! Reprehenderit, beatae. Officiis, perferendis omnis consequatur dolorum autem sunt obcaecati quisquam deserunt? Cum ratione fuga similique necessitatibus ut, sed magnam sequi voluptas id eaque minus deserunt laudantium quo obcaecati molestias voluptatum! Error, placeat odit? Ab iste sequi accusantium in repudiandae. Numquam dolore ratione nemo odio quod laboriosam architecto velit quidem magnam itaque aperiam laudantium doloremque, corporis asperiores ex impedit blanditiis odit tempora eius! Atque dicta dignissimos blanditiis!</p>
+    <p>這份義大利麵<em id='price'></em>元</p>
+    <div class="gift">
+        <img src="img/happy-birthday.jpg" width="150px" height="150px" alt="gift">
+        <p>Hello<em id=myName></em>:</p>
+        <h2>Happy Birthday!</h2>
+        <p>Eugene Tseng</p>
+
+    </div>
+    <div class="inner-wrap">
+        <h2>JS計算機(+, -, *, /) - 餐廳點餐篇</h2>
+        <p>櫃台：您好，請問要點些什麼？</p>
+        <p>顧客：我想要點<input type="text" id="hamNumId">個漢堡，<input type="text" id="colaNumId">杯可樂。</p>
+        <p>櫃台：<input type="button" id="calculator" value="計算總額">好的，一共<em id="totalId" class="tag">  </em>元。</p>
+    </div>
+
+    <div class='inner-wrap2'>
+        <h2>JS運算子(==, !==, ===) - 餐廳折扣篇</h2>
+        <p>櫃台：您好，請問您是本月壽星嗎？</p>
+        <p>顧客：<em class="tag" id="birthdayId"></em></p>
+        <p>櫃台：您的預約是兩位，請問是不是還沒到齊？</p>
+        <p>顧客：<em class="tag" id="peopleId"></em></p>
+    </div>
+    <div class="inner-wrap3">
+        <h2>JS運算子(&&, ||, !) - 贈品篇</h2>
+        <p>櫃台：您好，請問您有會員卡嗎？ 帳單有滿千嗎？ 兩個都符合的話有送超值禮喔！</p>
+        <p>顧客：<em class="tag" id="andId"></em></p>
+        <p>櫃台：不好意思，我弄錯了，只要滿千就有了</p>
+        <p>顧客：<em class="tag" id="orId"></em></p>
+    </div>
+
+    <h2 class="h2DomClass" id="h2DomId"><em>測試用資料</em></h2>
+    <h2 class="h2DomClass" id="h2DomId"><em>測試用資料</em></h2>
+    <h2 class="h2DomClass" id="h2DomId"><em>測試用資料</em></h2>
+    <h2 class="h2DomClass" id="h2DomId"><em>測試用資料</em></h2>
+    <h2 class="h2DomClass" id="h2DomId"><em>測試用資料</em></h2>
+
+    <h2 class="h2DomClass2"><a href="#">Title</a></h2>
+    <div class="divDomClass">Hello</div>
+
+
+    <ul class="domList"></ul>
+
+
+    <h2>書店名、官網，自JSON抓取</h2>
+    <ul class="bookStoreList"></ul>
+
+    <h2 class="createEl"><em></em></h2>
+    <ul class="createElList"></ul>
+
+    <input type="button" value="onClick語法" class="btn">
+
+    <div class="blocking"></div>
+    
+    <input type="button" value="eventListener語法" class="btnListen">
+    
+    <h2>The Effect of Event Capturing</h2>
+    <div class="capClass">
+        <ul>
+            <li><em class="eventCap">Event Capturing</em></li>
+        </ul>
+    </div>
+    <h2>The Effect of Stop Propagation / 中止事件傳遞 (.box不會傳到body)</h2>
+    <div class="stopWrap">
+        <div class="demoStopPropa"></div>
+    </div>
+    <h2>e.target回傳現在位置，並用preventDefault停止a的預設行為</h2>
+    <div class="targetDiv">
+        <ul>
+            <li><a href="#">現在的節點名是？</a></li>
+        </ul>
+    </div>
+
+    <h2>change事件，搭配for迴圈和if判斷抓出符合下拉選單的資料</h2>
+    <select id="areaId">
+        <option value="中山區">中山區</option>
+        <option value="士林區">士林區</option>
+    </select>
+    <ul class="changeList"></ul>
+
+
+    
+    
+    <script src="js/all.js"></script>
+</body>
+</html>

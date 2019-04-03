@@ -1,0 +1,36 @@
+h2, p{
+    font-family: sans-serif;
+
+}
+h1{
+    color:red;
+}
+
+#domId {
+    color: pink;
+    font-size: 48px;
+}
+
+.setColorBlue{
+    color: blue;
+}
+
+.blocking{
+    height: 50px;
+}
+
+.capClass{
+    border: 1px solid pink;
+}
+
+.demoStopPropa{
+    background: gray;
+    height: 100px;
+    width: 100px;
+}
+
+.targetDiv{
+    width: 500px;
+    height: 50px;
+    background: beige;
+}
