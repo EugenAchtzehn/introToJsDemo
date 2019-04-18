@@ -23,9 +23,27 @@ document.getElementById('calculator').onclick = function () {
     //alert('漢堡' + hamNum + '個');
     //alert('可樂' + colaNum + '杯');
     var total = hamNum + colaNum;
-    document.getElementById('totalId').textContent = total;
-
+    //console.log(total);
+    if (isNaN(total)) {
+        alert('請填入數字再計算');
+        return
+    } else {
+        document.getElementById('totalId').textContent = total;
+    }
+    //如果沒填入數字或填入非數字導致NaN，則中止onClick帶出的函數
+    //有數字(含0)，則計算並帶入總額
 }
+
+function checkCal(e) {
+    var str = e.target.value;
+    if (str == '') {
+        alert('請填入數字');
+    }
+}
+document.getElementById('hamNumId').addEventListener('blur', checkCal, false);
+document.getElementById('colaNumId').addEventListener('blur', checkCal, false);
+//對input進行監聽，如果離開焦點時(blur)，經checkCal確認沒填入數字，則出現警示
+
 
 var arrayTest = [8, 'tt', 9, [1, 2, 3]]
 console.log(arrayTest);
@@ -264,7 +282,7 @@ var districtLeng = district.length;
 function updateList(e) {
     var districtSelect = e.target.value;
     var str = '';
-    for (var i = 0; i < districtLeng; i++){
+    for (var i = 0; i < districtLeng; i++) {
         if (districtSelect == district[i].place) {
             str = str + '<li>' + district[i].farmer + '</li>';
         }
@@ -274,9 +292,126 @@ function updateList(e) {
 area.addEventListener('change', updateList, false);
 //監聽下拉選單的change事件，並利用for, if抓取相符資料
 
-
-function launchRocket(e){
-    console.log();
+var body = document.body;
+function launchRocket(e) {
+    console.log(e)
+    switch (e.keyCode) {
+        case 49:
+            document.querySelector('.rocket-1').style.bottom = '20000px'
+            break;
+        case 50:
+            document.querySelector('.rocket-2').style.bottom = '20000px'
+            break;
+        case 51:
+            document.querySelector('.rocket-3').style.bottom = '20000px'
+            break;
+        default:
+            console.log('you should press 1, 2, or 3')
+            break;
+    }
 };
+body.addEventListener('keydown', launchRocket, false);
+//監聽keydown事件，並用keyCode, switch發射指定的火箭
+//※keydown事件的監聽主體僅能為body，不能為div
+//addEventListener的'click' function(e){}的e會回傳MouseEvent
+//如果是'keydown'則function(e){}就回傳KeyboardEvent
 
-addEventListener('keydown', launchRocket, false);
+
+let mouseBox = document.querySelector('.mouseBox');
+mouseBox.addEventListener('mouseover', function () {
+    alert("Don't touch me!");
+}, false);
+//設置一個Box，在滑鼠橫越時會跳出警告
+
+
+let screenX = document.querySelector('.screenX');
+let screenY = document.querySelector('.screenY');
+let pageX = document.querySelector('.pageX');
+let pageY = document.querySelector('.pageY');
+let clientX = document.querySelector('.clientX');
+let clientY = document.querySelector('.clientY');
+let mouseImg = document.querySelector('.mouseImg');
+
+function getPosition(e) {
+    screenX.textContent = e.screenX;
+    screenY.textContent = e.screenY;
+    //螢幕座標
+    pageX.textContent = e.pageX;
+    pageY.textContent = e.pageY;
+    //網頁座標
+    clientX.textContent = e.clientX;
+    clientY.textContent = e.clientY;
+    //當前頁面座標
+    mouseImg.style.left = e.clientX + 1 + 'px';
+    mouseImg.style.top = e.clientY + 1 + 'px';
+    //直接在.mouseImg的div中，寫進螢幕偵測到的座標
+    //+1可以解決滑鼠一直按到.mouseImg的困擾
+};
+document.body.addEventListener('mousemove', getPosition, false);
+//設定getPosition函數，並監聽body，讓其回傳三種不同的座標值
+
+
+let selectList = document.querySelector('.selectList');
+selectList.addEventListener('click', getTagName, false);
+function getTagName(e) {
+    if (e.target.nodeName !== 'LI') { return };
+    console.log(e.target.textContent);
+};
+//使用if判斷，監聽父元素並回傳特定元素(li)的文字內容(textContent)
+
+// let lsTest = 'Eugene';
+// localStorage.setItem('userName', lsTest);
+//單純把變數寫入local storage
+
+let storageText = document.querySelector('.storageText');
+let storageBtn = document.querySelector('.storageBtn');
+let callBtn = document.querySelector('.callBtn');
+
+storageBtn.addEventListener('click', storeName, false);
+function storeName(e) {
+    let str = storageText.value;
+    //講師寫.value，但.textContent也可以抓到輸入內容
+    localStorage.setItem('userName', str);
+}
+callBtn.addEventListener('click', getName, false);
+function getName(e) {
+    this.value = localStorage.getItem('userName');
+    //讓callBtn的value轉成local storage的userName
+}
+
+let ranch = [{ farmer: 'Karl' }];
+let ranchString = JSON.stringify(ranch);
+console.log(ranchString + typeof (ranchString));
+localStorage.setItem('myRanch', ranchString);
+//JSON.stringify()，將陣列轉成字串
+let getRanch = localStorage.getItem('myRanch');
+let getRanchArray = JSON.parse(getRanch);
+console.log(getRanchArray + typeof (getRanchArray));
+//JSON.parse()，解析字串，轉回陣列存放物件
+//透過JSON.parse(),JSON.stringify()，來轉換字串和陣列
+
+let ulList = document.querySelector('.ulList');
+ulList.addEventListener('click', checkList, false);
+function checkList(e) {
+    let farmer = e.target.dataset.farmer;
+    let dog = e.target.dataset.dog;
+    console.log('farmer name: ' + farmer);
+    console.log('he/she has ' + dog + ' dogs');
+}
+//設定HTML5的自訂標籤選項data-*，並用監聽'click'搭配dataset的方式抓取物件內容
+
+let ville = [
+    {
+        farmer: Charles
+    }, {
+        farmer: Otto
+    }, {
+        farmer: Peter
+    }, {
+        farmer: Vincent
+    }
+];
+//設計要塞入List的資料，四名農夫
+
+let customList = document.querySelector('.customList');
+
