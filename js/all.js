@@ -402,16 +402,161 @@ function checkList(e) {
 
 let ville = [
     {
-        farmer: Charles
+        farmer: 'Charles'
     }, {
-        farmer: Otto
+        farmer: 'Otto'
     }, {
-        farmer: Peter
+        farmer: 'Peter'
     }, {
-        farmer: Vincent
+        farmer: 'Vincent'
     }
 ];
 //設計要塞入List的資料，四名農夫
-
 let customList = document.querySelector('.customList');
+
+function renewList(e) {
+    let str = '';
+    let length = ville.length;
+    for (var i = 0; i < length; i++) {
+        str += '<li' + ' data-name=' + i + '>' + ville[i].farmer + '</li>';
+    }
+    customList.innerHTML = str;
+}
+//寫for迴圈，把List用innerHTML塞入，並加入自訂屬性
+
+renewList();
+//產生List
+
+customList.addEventListener('click', verifyList);
+
+function verifyList(e) {
+    if (e.target.nodeName !== 'LI') { return };
+    //判斷式讓非li元素不反應
+    var nameOrder = e.target.dataset.name;
+    //從HTML標籤的自訂屬性取得順序
+    console.log('您選到的農夫是：' + ville[nameOrder].farmer);
+    //從順序找回原陣列，取得名字
+    ville.splice(nameOrder, 1);
+    //對ville陣列使用splice(開始刪除的位置, 刪除幾項)
+    renewList();
+    //再產生list，更新data-name的順序
+}
+var toDoText = document.querySelector('.toDoText');
+var toDoButton = document.querySelector('.toDoButton');
+var toDoList = document.querySelector('.toDoList');
+var toDoId = 0;
+
+toDoButton.addEventListener('click', storeTask);
+function storeTask(e) {
+    var toDoValue = toDoText.value;
+    //取得輸入內容，為變數toDoValue
+    localStorage.setItem('myTask'+toDoId, toDoValue);
+    //把取得的內容丟到local storage，並加一組後綴
+    toDoId++;
+    //使其成為unique ID
+};
+
+// toDoList.addEventListener('click', deleteTask);
+// function deleteTask(e) {
+//     if (e.target.nodeName !== 'A') { return };
+//     JSON.parse();
+//     解析後陣列.splice(標號,1);
+//     checkAndUpdate();
+// }
+
+toDoButton.addEventListener('click', checkAndUpdate);
+function checkAndUpdate(e) {
+    var str = '';
+    for (var i = 1; i < toDoId; i++) {
+        str += localStorage.getItem('myTask' + toDoId);
+    }
+    //解析取得的字串
+    console.log(str);
+    toDoList.innerHTML = str;
+    //重新產生列表
+}
+// update & innerHTML
+//     < a data - num ></a ><><>
+
+// var toDoString = '<li' + ' data-id=' + toDoId + '>' + toDoValue + '</li>';
+//     console.log(toDoString);
+//     for (var i = 0; i < toDoId; i++) {
+//         str = '';
+//         str += localStorage.getItem('toDoTask' + i);
+//         console.log(str);
+//     };
+
+
+document.querySelector('.nextPage').addEventListener('click', nextPage);
+function nextPage(e){
+    window.history.forward();
+};
+// 加入一個用JS寫的下一頁按鈕
+
+document.querySelector('.printBtn').addEventListener('click', printPage);
+function printPage(e){
+    window.print();
+}
+// 實作一個JS列印按鈕
+
+document.querySelector('.locationBtn').addEventListener('click', getLocationInfo);
+function getLocationInfo(e){
+    let showLocation = document.querySelector('.showLocation');
+    if(e.target.value == '瀏覽location info'){
+        showLocation.textContent = JSON.stringify(window.location);
+        //window.location下，有多種屬性可叫出(為一陣列)，default是href之內容；將其字串化可顯示全部內容。
+        e.target.value = '詳閱下方';
+    } else {
+        e.target.value = '瀏覽location info';
+        showLocation.textContent = '';
+    }
+}
+// 實作一個查詢location資訊的按鈕
+
+
+document.querySelector('.moveBtn').addEventListener('click', moveToGoogle);
+function moveToGoogle(e) {
+    window.open('https://www.google.com');
+}
+// document.querySelector('.moveBtn').addEventListener('click', function(){
+//     window.open('https://www.google.com');
+// }); 
+// 此匿名函數等同上方呼叫外部函數的作用
+
+// 實作新分頁跳轉至Google首頁的功能
+
+var xhr = new XMLHttpRequest();
+xhr.open('get','https://hexschool.github.io/ajaxHomework/data.json', true);
+xhr.send(null);
+// xhr.readyState = 4，代表已經成功取值，可取xhr.response或xhr.responseText的值做應用
+// 上方三行為AJAX get取值的標準動作
+
+xhr.onload = function () {
+    console.log(xhr.responseText);
+    var str = JSON.parse(xhr.responseText);
+    // 將此字串解析成物件
+    document.querySelector('.message').textContent = "Name: "+str[0].name;
+    // 抓出陣列的第0項name屬性的值，丟到.message的ul元素內
+}
+
+let btnPost = document.querySelector('.btnPost');
+btnPost.addEventListener('click', sendPost, false);
+// 監聽發送鍵
+function sendPost (e){
+    let xhrPost = new XMLHttpRequest();
+    xhrPost.open('post','https://hexschool-tutorial.herokuapp.com/api/signup',true);
+    xhrPost.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    // 發送傳統表單輸入的格式
+    let acct = document.querySelector('.formAcct').value;
+    let pw = document.querySelector('.formPw').value;
+    console.log('email='+acct+'&password='+pw);
+    xhrPost.send('email='+acct+'&password='+pw);
+    let svrResponse = document.querySelector('.svrResponse');
+    xhrPost.onload = function(){
+        let str = JSON.parse(xhrPost.responseText);
+        svrResponse.textContent = str.message;
+    };
+}
+// 按下後觸動此函數，發送信箱和密碼給後端
+// Server回覆後，抓取XMLHttpRequest並解析responseText，將message屬性之值顯示在指定的em元素中
 
